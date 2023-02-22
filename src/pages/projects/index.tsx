@@ -1,12 +1,13 @@
 import { Project } from '@/frontend/@types/Project'
 import { ProjectsScreen } from '@/frontend/components/screens'
-import projectsMock from '@/frontend/mocks/projects'
+import { getAllProjects } from '@/frontend/services/projects'
 import Head from 'next/head'
 
 export const getServerSideProps = async () => {
+  const projects = await getAllProjects()
   return {
     props: {
-      projects: projectsMock
+      projects
     }
   }
 }

@@ -9,7 +9,7 @@ import YoutubeIcon from './icons/Youtube'
 
 const PITCH_TEXT = 'I help build innovative and optimized web solutions using **Javascript** technologies. With a focus on seamless **user experiences** and **peak performance**. *I bring digital dreams to life.*'
 
-export default function Pitch() {
+export default function About() {
   return (
     <Container className="text-center py-32 text-lg sm:text-2xl flex flex-col justify-center items-center">
       <div className="mb-4 rounded-full relative overflow-hidden border-4 border-primary-500 shadow-xl">

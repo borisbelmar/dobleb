@@ -3,7 +3,7 @@ import { Project } from '@/frontend/@types/Project'
 import FeaturedArticles from './components/FeaturedArticles'
 import FeaturedProjects from './components/FeaturedProjects'
 import Hero from './components/Hero'
-import Pitch from './components/Pitch/Pitch'
+import About from '../../common/About/About'
 
 interface Props {
   projects: Project[]
@@ -15,11 +15,11 @@ export default function HomeScreen({
   articles
 }: Props) {
   return (
-    <div className="pb-8">
+    <>
       <Hero />
-      <Pitch />
+      <About />
       <FeaturedArticles articles={articles} />
       <FeaturedProjects projects={projects} />
-    </div>
+    </>
   )
 }

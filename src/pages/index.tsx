@@ -1,15 +1,20 @@
 import { Article } from '@/frontend/@types/Article'
 import { Project } from '@/frontend/@types/Project'
 import { HomeScreen } from '@/frontend/components/screens'
-import articlesMock from '@/frontend/mocks/articles'
-import projectsMock from '@/frontend/mocks/projects'
+import { getFeaturedArticles } from '@/frontend/services/articles'
+import { getFeaturedProjects } from '@/frontend/services/projects'
 import Head from 'next/head'
 
 export const getServerSideProps = async () => {
+  const [projects, articles] = await Promise.all([
+    getFeaturedProjects(),
+    getFeaturedArticles()
+  ])
+
   return {
     props: {
-      projects: [...projectsMock].splice(0, 4),
-      articles: [...articlesMock].splice(0, 3)
+      projects,
+      articles
     }
   }
 }

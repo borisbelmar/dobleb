@@ -8,12 +8,13 @@ interface Props {
 
 export default function ProjectsScreen({ projects }: Props) {
   return (
-    <Container className="min-h-screen pb-6">
-      <h1>Projects</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <Container className="pb-6">
+      <h1 className="text-3xl py-8 font-bold">Projects</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         {projects.map(project => (
           <ProjectItem
-            key={project.title}
+            key={project.slug}
+            slug={project.slug}
             title={project.title}
             category={project.category}
             featuredImage={project.featuredImage}

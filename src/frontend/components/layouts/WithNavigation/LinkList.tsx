@@ -2,8 +2,7 @@ import Link from 'next/link'
 
 const LINKS = [
   { href: '/articles', label: 'Articles' },
-  { href: '/projects', label: 'Portfolio' },
-  { href: '/about', label: 'About' }
+  { href: '/projects', label: 'Portfolio' }
 ]
 
 export default function LinkList() {

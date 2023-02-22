@@ -15,17 +15,18 @@ const breakpointColumns = {
 
 export default function ArticlesScreen({ articles }: Props) {
   return (
-    <Container className="min-h-screen pb-6">
-      <h1>Articles</h1>
+    <Container className="pb-6">
+      <h1 className="text-3xl py-8 font-bold">Articles</h1>
       <Masonry
         breakpointCols={breakpointColumns}
         className="flex flex-wrap -ml-4"
-        columnClassName="flex-1 pl-4"
+        columnClassName="flex-1 pl-4 mb-8"
       >
         {articles.map(article => (
-          <div key={article.title} className="mb-4">
+          <div key={article.slug} className="mb-4">
             <ArticleItem
               title={article.title}
+              slug={article.slug}
               featuredImage={article.featuredImage}
               date={article.date}
               description={article.description}
