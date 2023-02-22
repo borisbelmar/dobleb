@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Article } from '../@types/Article'
 
-const baseHost = process.env.NEXT_PUBLIC_API_BASE_URL
+const baseHost = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
 
 const articlesClient = axios.create({
   baseURL: `${baseHost}/api/articles`
