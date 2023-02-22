@@ -1,6 +1,6 @@
 ---
 title: "Lean Management: Un Enfoque Práctico para la Mejora Continua"
-description: Lean Management es un enfoque de mejora continua que se centra en la eliminación de desperdicios y la mejora de la eficiencia. En este artículo, te mostramos cómo puedes aplicar Lean Management en tu proyecto.\
+description: Lean Management es un enfoque de mejora continua que se centra en la eliminación de desperdicios y la mejora de la eficiencia. En este artículo, te mostramos cómo puedes aplicar Lean Management en tu proyecto.
 author: Boris Belmar
 featuredImage: https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&ar=16:9&q=80
 date: 2022-05-12
