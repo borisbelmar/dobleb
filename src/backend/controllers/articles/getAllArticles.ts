@@ -9,7 +9,7 @@ const getAllArticles = async (featured?: boolean): Promise<ArticleDTO[]> => {
   const filteredArticles = getFilteredItems(articlesMarkdown, { featured })
 
   if (filteredArticles) {
-    const sortedArticles = sortContent(filteredArticles)
+    const sortedArticles = sortContent(filteredArticles, { sortBy: 'date', direction: 'desc' })
     return sortedArticles.map(mapArticleMarkdownToDTO)
   }
 
