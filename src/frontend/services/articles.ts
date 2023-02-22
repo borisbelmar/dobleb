@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { Article } from '../@types/Article'
 
+const baseHost = process.env.NEXT_PUBLIC_API_BASE_URL
+
 const articlesClient = axios.create({
-  baseURL: 'http://localhost:8080/api/articles'
+  baseURL: `${baseHost}/api/articles`
 })
 
 export const getAllArticles = async (): Promise<Article[]> => {

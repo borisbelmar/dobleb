@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { Project } from '../@types/Project'
 
+const baseHost = process.env.NEXT_PUBLIC_API_BASE_URL
+
 const projectsClient = axios.create({
-  baseURL: 'http://localhost:8080/api/projects'
+  baseURL: `${baseHost}/api/projects`
 })
 
 export const getAllProjects = async (): Promise<Project[]> => {
