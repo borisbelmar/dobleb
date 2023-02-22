@@ -1,7 +1,7 @@
 import { readFile } from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
-import { MarkdownContent } from '../models/MarkDownContent'
+import { MarkdownContent } from '../models/MarkdownContent'
 import getEntityDocsPath from './getDocsPath'
 
 export default async function getMarkdownContent(
