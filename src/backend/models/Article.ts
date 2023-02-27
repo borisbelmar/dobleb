@@ -10,14 +10,14 @@ export interface ArticleDTO {
 }
 
 export function mapArticleNotionPageToDTO(page: any): ArticleDTO {
-  const { id, properties } = page
+  const { id, properties, cover } = page
 
   return {
     id,
     title: properties.title.title[0].plain_text,
     slug: properties.slug.rich_text[0].plain_text,
     description: properties.description.rich_text[0].plain_text,
-    featuredImage: properties.featuredImage.url,
+    featuredImage: cover?.external?.url || '',
     content: '',
     date: properties.publishedAt.date.start,
     tags: properties.tags.multi_select.map((tag: any) => tag.name)
