@@ -1,19 +1,42 @@
-import getAllMarkdownContent from '@/backend/utils/getAllMarkdownContent'
-import getFilteredContent from '@/backend/utils/getFilteredContent'
-import sortContent from '@/backend/utils/sortContent'
-import { mapProjectMarkdownToDTO, ProjectDTO } from '../../models/Project'
+import { Client } from '@notionhq/client'
+import { mapProjectNotionPageToDTO, ProjectDTO } from '../../models/Project'
 
 const getAllProjects = async (featured?: boolean): Promise<ProjectDTO[]> => {
-  const projectsMarkdown = await getAllMarkdownContent('projects')
+  const notion = new Client({ auth: process.env.NOTION_API_KEY })
+  const databaseId = process.env.NOTION_PROJECTS_DATABASE_ID as string
 
-  const filteredProjects = getFilteredContent(projectsMarkdown, { featured })
+  const filtersAnd = [
+    {
+      property: 'published',
+      checkbox: {
+        equals: true
+      }
+    }
+  ]
 
-  if (filteredProjects) {
-    const sortedArticles = sortContent(filteredProjects, { sortBy: 'year', direction: 'desc' })
-    return sortedArticles.map(mapProjectMarkdownToDTO)
+  if (featured) {
+    filtersAnd.push({
+      property: 'featured',
+      checkbox: {
+        equals: true
+      }
+    })
   }
 
-  return []
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      and: filtersAnd
+    },
+    sorts: [
+      {
+        property: 'year',
+        direction: 'descending'
+      }
+    ]
+  })
+
+  return response.results.map(mapProjectNotionPageToDTO)
 }
 
 export default getAllProjects

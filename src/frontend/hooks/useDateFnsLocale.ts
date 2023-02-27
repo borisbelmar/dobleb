@@ -1,12 +1,6 @@
-import { es, enUS } from 'date-fns/locale'
-import { useTranslation } from 'next-i18next'
+import { es } from 'date-fns/locale'
 
 export default function useDateFnsLocale() {
-  const { i18n } = useTranslation()
-  const locale = i18n.language
-
-  if (locale === 'es') {
-    return es
-  }
-  return enUS
+  // TODO: implements i18next
+  return es
 }

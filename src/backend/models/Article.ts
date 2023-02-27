@@ -1,5 +1,3 @@
-import type { MarkdownContent } from './MarkdownContent'
-
 export interface ArticleDTO {
   id: string
   title: string
@@ -11,17 +9,17 @@ export interface ArticleDTO {
   tags: string[]
 }
 
-export function mapArticleMarkdownToDTO(mdContent: MarkdownContent): ArticleDTO {
-  const { slug, data, content } = mdContent
+export function mapArticleNotionPageToDTO(page: any): ArticleDTO {
+  const { id, properties } = page
 
   return {
-    id: slug,
-    title: data.title as string,
-    slug,
-    description: data.description as string,
-    featuredImage: data.featuredImage as string,
-    content,
-    date: data.date as string,
-    tags: data.tags as string[]
+    id,
+    title: properties.title.title[0].plain_text,
+    slug: properties.slug.rich_text[0].plain_text,
+    description: properties.description.rich_text[0].plain_text,
+    featuredImage: properties.featuredImage.url,
+    content: '',
+    date: properties.publishedAt.date.start,
+    tags: properties.tags.multi_select.map((tag: any) => tag.name)
   }
 }

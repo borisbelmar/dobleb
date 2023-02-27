@@ -1,19 +1,42 @@
-import getAllMarkdownContent from '@/backend/utils/getAllMarkdownContent'
-import getFilteredItems from '@/backend/utils/getFilteredContent'
-import sortContent from '@/backend/utils/sortContent'
-import { ArticleDTO, mapArticleMarkdownToDTO } from '../../models/Article'
+import { Client } from '@notionhq/client'
+import { ArticleDTO, mapArticleNotionPageToDTO } from '../../models/Article'
 
 const getAllArticles = async (featured?: boolean): Promise<ArticleDTO[]> => {
-  const articlesMarkdown = await getAllMarkdownContent('articles')
+  const notion = new Client({ auth: process.env.NOTION_API_KEY })
+  const databaseId = process.env.NOTION_ARTICLES_DATABASE_ID as string
 
-  const filteredArticles = getFilteredItems(articlesMarkdown, { featured })
+  const filtersAnd = [
+    {
+      property: 'published',
+      checkbox: {
+        equals: true
+      }
+    }
+  ]
 
-  if (filteredArticles) {
-    const sortedArticles = sortContent(filteredArticles, { sortBy: 'date', direction: 'desc' })
-    return sortedArticles.map(mapArticleMarkdownToDTO)
+  if (featured) {
+    filtersAnd.push({
+      property: 'featured',
+      checkbox: {
+        equals: true
+      }
+    })
   }
 
-  return []
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      and: filtersAnd
+    },
+    sorts: [
+      {
+        property: 'publishedAt',
+        direction: 'descending'
+      }
+    ]
+  })
+
+  return response.results.map(mapArticleNotionPageToDTO)
 }
 
 export default getAllArticles

@@ -1,5 +1,3 @@
-import { MarkdownContent } from './MarkdownContent'
-
 export interface ProjectDTO {
   id: string
   title: string
@@ -11,17 +9,17 @@ export interface ProjectDTO {
   category: string
 }
 
-export function mapProjectMarkdownToDTO(mdContent: MarkdownContent): ProjectDTO {
-  const { slug, data, content } = mdContent
+export function mapProjectNotionPageToDTO(page: any): ProjectDTO {
+  const { id, properties, cover } = page
 
   return {
-    id: slug,
-    title: data.title as string,
-    slug,
-    description: data.description as string,
-    featuredImage: data.featuredImage as string,
-    year: data.year as number,
-    content,
-    category: data.category as string
+    id,
+    title: properties.title.title[0].plain_text,
+    slug: properties.slug.rich_text[0].plain_text,
+    description: properties.description.rich_text[0].plain_text,
+    featuredImage: cover?.external?.url || '',
+    year: properties.year.number,
+    content: '',
+    category: properties.category.select.name
   }
 }
