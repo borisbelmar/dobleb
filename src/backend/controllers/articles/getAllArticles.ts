@@ -1,9 +1,8 @@
-import { Client } from '@notionhq/client'
+import getDoblebNotionClient from '@/backend/services/DoblebNotionClient'
 import { ArticleDTO, mapArticleNotionPageToDTO } from '../../models/Article'
 
 const getAllArticles = async (featured?: boolean): Promise<ArticleDTO[]> => {
-  const notion = new Client({ auth: process.env.NOTION_API_KEY })
-  const databaseId = process.env.NOTION_ARTICLES_DATABASE_ID as string
+  const { query } = getDoblebNotionClient('articles')
 
   const filtersAnd = [
     {
@@ -23,8 +22,7 @@ const getAllArticles = async (featured?: boolean): Promise<ArticleDTO[]> => {
     })
   }
 
-  const response = await notion.databases.query({
-    database_id: databaseId,
+  const response = await query({
     filter: {
       and: filtersAnd
     },
@@ -36,7 +34,7 @@ const getAllArticles = async (featured?: boolean): Promise<ArticleDTO[]> => {
     ]
   })
 
-  return response.results.map(mapArticleNotionPageToDTO)
+  return response.map(mapArticleNotionPageToDTO)
 }
 
 export default getAllArticles

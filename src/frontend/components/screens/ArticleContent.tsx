@@ -2,7 +2,7 @@ import useDateFnsLocale from '@/frontend/hooks/useDateFnsLocale'
 import getBlurredImage from '@/frontend/utils/getBlurredImage'
 import { format } from 'date-fns'
 import Image from 'next/image'
-import ReactMarkdown from 'react-markdown'
+import { Markdown } from '../common'
 import About from '../common/About/About'
 import { Container } from '../layouts'
 
@@ -46,9 +46,7 @@ export default function ArticleContent({
       </div>
       <div>
         <Container className="prose-xl pb-24 pt-16">
-          <ReactMarkdown className="w-full">
-            {content}
-          </ReactMarkdown>
+          <Markdown className="w-full" content={content} />
         </Container>
         <Container>
           <hr className="border-primary-500" />

@@ -1,9 +1,9 @@
+import { getAllArticles } from '@/backend'
 import { Article } from '@/frontend/@types/Article'
 import { ArticlesScreen } from '@/frontend/components/screens'
-import { getAllArticles } from '@/frontend/services/articles'
 import Head from 'next/head'
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const articles = await getAllArticles()
   return {
     props: {

@@ -1,2 +1,5 @@
-export * from './handlers/articles'
-export * from './handlers/projects'
+export { default as getArticleBySlug } from './controllers/articles/getArticleBySlug'
+export { default as getAllArticles } from './controllers/articles/getAllArticles'
+export { default as getAllProjects } from './controllers/projects/getAllProjects'
+export { default as getProjectBySlug } from './controllers/projects/getProjectBySlug'
+export { default as getAllTechnologies } from './controllers/getAllTechnologies'

@@ -1,13 +1,11 @@
-import { Client } from '@notionhq/client'
+import getDoblebNotionClient from '@/backend/services/DoblebNotionClient'
 import { NotionToMarkdown } from 'notion-to-md'
 import { ArticleDTO, mapArticleNotionPageToDTO } from '../../models/Article'
 
 const getArticleBySlug = async (slug: string): Promise<ArticleDTO | null> => {
-  const notion = new Client({ auth: process.env.NOTION_API_KEY })
-  const databaseId = process.env.NOTION_ARTICLES_DATABASE_ID as string
+  const { client, query } = getDoblebNotionClient('articles')
 
-  const response = await notion.databases.query({
-    database_id: databaseId,
+  const response = await query({
     filter: {
       and: [
         {
@@ -26,11 +24,11 @@ const getArticleBySlug = async (slug: string): Promise<ArticleDTO | null> => {
     }
   })
 
-  if (response.results.length > 0) {
-    const pageData = response.results[0]
+  if (response.length > 0) {
+    const pageData = response[0]
     const articleDTO = mapArticleNotionPageToDTO(pageData)
 
-    const n2m = new NotionToMarkdown({ notionClient: notion })
+    const n2m = new NotionToMarkdown({ notionClient: client })
     const markdownContent = await n2m.pageToMarkdown(pageData.id)
     const markdownString = n2m.toMarkdownString(markdownContent)
 

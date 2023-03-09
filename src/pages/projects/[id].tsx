@@ -1,6 +1,6 @@
+import { getAllProjects, getProjectBySlug } from '@/backend'
 import { Project } from '@/frontend/@types/Project'
 import { ProjectContentScreen } from '@/frontend/components/screens'
-import { getProjectBySlug } from '@/frontend/services/projects'
 import Head from 'next/head'
 
 interface ServerSideContext {
@@ -9,7 +9,21 @@ interface ServerSideContext {
   }
 }
 
-export const getServerSideProps = async ({ params }: ServerSideContext) => {
+export const getStaticPaths = async () => {
+  const articles = await getAllProjects()
+  const paths = articles.map(article => ({
+    params: {
+      id: article.slug
+    }
+  }))
+
+  return {
+    paths,
+    fallback: false
+  }
+}
+
+export const getStaticProps = async ({ params }: ServerSideContext) => {
   try {
     const project = await getProjectBySlug(params.id)
     return {

@@ -9,8 +9,42 @@ export interface ProjectDTO {
   category: string
 }
 
-export function mapProjectNotionPageToDTO(page: any): ProjectDTO {
-  const { id, properties, cover } = page
+export interface ProjectNotionPage {
+  id: string
+  properties: {
+    title: {
+      title: {
+        plain_text: string
+      }[]
+    }
+    slug: {
+      rich_text: {
+        plain_text: string
+      }[]
+    }
+    description: {
+      rich_text: {
+        plain_text: string
+      }[]
+    }
+    year: {
+      number: number
+    }
+    category: {
+      select: {
+        name: string
+      }
+    }
+  }
+  cover: {
+    external: {
+      url: string
+    }
+  }
+}
+
+export function mapProjectNotionPageToDTO(page: unknown): ProjectDTO {
+  const { id, properties, cover } = page as ProjectNotionPage
 
   return {
     id,

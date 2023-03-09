@@ -1,6 +1,6 @@
+import { getAllArticles, getArticleBySlug } from '@/backend'
 import { Article } from '@/frontend/@types/Article'
 import { ArticleContentScreen } from '@/frontend/components/screens'
-import { getArticleBySlug } from '@/frontend/services/articles'
 import Head from 'next/head'
 
 interface ServerSideContext {
@@ -9,7 +9,21 @@ interface ServerSideContext {
   }
 }
 
-export const getServerSideProps = async ({ params }: ServerSideContext) => {
+export const getStaticPaths = async () => {
+  const articles = await getAllArticles()
+  const paths = articles.map(article => ({
+    params: {
+      id: article.slug
+    }
+  }))
+
+  return {
+    paths,
+    fallback: false
+  }
+}
+
+export const getStaticProps = async ({ params }: ServerSideContext) => {
   try {
     const article = await getArticleBySlug(params.id)
     return {

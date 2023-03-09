@@ -1,9 +1,9 @@
+import { getAllProjects } from '@/backend'
 import { Project } from '@/frontend/@types/Project'
 import { ProjectsScreen } from '@/frontend/components/screens'
-import { getAllProjects } from '@/frontend/services/projects'
 import Head from 'next/head'
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const projects = await getAllProjects()
   return {
     props: {

@@ -9,8 +9,44 @@ export interface ArticleDTO {
   tags: string[]
 }
 
-export function mapArticleNotionPageToDTO(page: any): ArticleDTO {
-  const { id, properties, cover } = page
+export interface ArticleNotionPage {
+  id: string
+  properties: {
+    title: {
+      title: {
+        plain_text: string
+      }[]
+    }
+    slug: {
+      rich_text: {
+        plain_text: string
+      }[]
+    }
+    description: {
+      rich_text: {
+        plain_text: string
+      }[]
+    }
+    publishedAt: {
+      date: {
+        start: string
+      }
+    }
+    tags: {
+      multi_select: {
+        name: string
+      }[]
+    }
+  },
+  cover?: {
+    external?: {
+      url: string
+    }
+  }
+}
+
+export function mapArticleNotionPageToDTO(page: unknown): ArticleDTO {
+  const { id, properties, cover } = page as ArticleNotionPage
 
   return {
     id,
@@ -20,6 +56,6 @@ export function mapArticleNotionPageToDTO(page: any): ArticleDTO {
     featuredImage: cover?.external?.url || '',
     content: '',
     date: properties.publishedAt.date.start,
-    tags: properties.tags.multi_select.map((tag: any) => tag.name)
+    tags: properties.tags.multi_select.map(tag => tag.name)
   }
 }

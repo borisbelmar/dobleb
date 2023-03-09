@@ -11,7 +11,7 @@ export default function useThemeContext() {
 
   useEffect(() => {
     if (theme === 'dark') {
-      document.documentElement.classList.add('dark')
+      document.documentElement.classList.add('dark', 'transition')
       localStorage.theme = 'dark'
     } else {
       document.documentElement.classList.remove('dark')

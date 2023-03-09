@@ -7,7 +7,7 @@ import GithubIcon from './icons/Github'
 import LinkedInIcon from './icons/LinkedIn'
 import YoutubeIcon from './icons/Youtube'
 
-const PITCH_TEXT = 'I help build innovative and optimized web solutions using **Javascript** technologies. With a focus on seamless **user experiences** and **peak performance**. *I bring digital dreams to life.*'
+const PITCH_TEXT = 'Ayudo a construir soluciones web innovadoras y optimizadas utilizando tecnologías de **Javascript**. Con un enfoque en experiencias de usuario fluidas y **rendimiento máximo**. *Hago realidad los sueños digitales.*'
 
 export default function About() {
   return (

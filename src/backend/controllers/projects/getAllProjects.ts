@@ -1,9 +1,8 @@
-import { Client } from '@notionhq/client'
+import getDoblebNotionClient from '@/backend/services/DoblebNotionClient'
 import { mapProjectNotionPageToDTO, ProjectDTO } from '../../models/Project'
 
 const getAllProjects = async (featured?: boolean): Promise<ProjectDTO[]> => {
-  const notion = new Client({ auth: process.env.NOTION_API_KEY })
-  const databaseId = process.env.NOTION_PROJECTS_DATABASE_ID as string
+  const { query } = getDoblebNotionClient('projects')
 
   const filtersAnd = [
     {
@@ -23,8 +22,7 @@ const getAllProjects = async (featured?: boolean): Promise<ProjectDTO[]> => {
     })
   }
 
-  const response = await notion.databases.query({
-    database_id: databaseId,
+  const response = await query({
     filter: {
       and: filtersAnd
     },
@@ -36,7 +34,7 @@ const getAllProjects = async (featured?: boolean): Promise<ProjectDTO[]> => {
     ]
   })
 
-  return response.results.map(mapProjectNotionPageToDTO)
+  return response.map(mapProjectNotionPageToDTO)
 }
 
 export default getAllProjects
