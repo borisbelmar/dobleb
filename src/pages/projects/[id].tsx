@@ -10,10 +10,10 @@ interface ServerSideContext {
 }
 
 export const getStaticPaths = async () => {
-  const articles = await getAllProjects()
-  const paths = articles.map(article => ({
+  const projects = await getAllProjects()
+  const paths = projects.map(project => ({
     params: {
-      id: article.slug
+      id: project.slug
     }
   }))
 

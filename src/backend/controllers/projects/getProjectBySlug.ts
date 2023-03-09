@@ -24,8 +24,8 @@ const getProjectBySlug = async (slug: string): Promise<ProjectDTO | null> => {
     }
   })
 
-  if (response.results.length > 0) {
-    const pageData = response.results[0]
+  if (response.length > 0) {
+    const pageData = response[0]
     const projectDTO = mapProjectNotionPageToDTO(pageData)
 
     const n2m = new NotionToMarkdown({ notionClient: client })

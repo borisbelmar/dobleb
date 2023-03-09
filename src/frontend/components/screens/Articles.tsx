@@ -16,7 +16,14 @@ const breakpointColumns = {
 export default function ArticlesScreen({ articles }: Props) {
   return (
     <Container className="pb-6">
-      <h1 className="text-3xl py-8 font-bold">Articles</h1>
+      <div className="py-16">
+        <h1 className="text-3xl font-bold mb-2">
+          Algunos de mis artículos
+        </h1>
+        <p className="opacity-70">
+          Escritos que a veces hago cuando me sobra algo de tiempo.
+        </p>
+      </div>
       <Masonry
         breakpointCols={breakpointColumns}
         className="flex flex-wrap -ml-4"
