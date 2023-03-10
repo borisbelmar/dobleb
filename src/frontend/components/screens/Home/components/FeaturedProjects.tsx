@@ -13,7 +13,7 @@ export default function FeaturedProjects({ projects }: Props) {
         <h2 className="text-2xl font-bold text-dark-primary-800 dark:text-primary-50 mb-1">
           Algo de mi experiencia
         </h2>
-        <Link href="/projects" as="a" className="transition text-primary-50 hover:text-primary-200 dark:text-primary-500 dark:hover:text-primary-700 inline-block mb-8">
+        <Link href="/projects" className="transition text-primary-50 hover:text-primary-200 dark:text-primary-500 dark:hover:text-primary-700 inline-block mb-8">
           Ver más de las cosas que he hecho
         </Link>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
