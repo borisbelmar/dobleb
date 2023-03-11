@@ -1,4 +1,4 @@
-import ArticleItem from '@/frontend/components/common/ArticleItem'
+import { ArticleItem } from '@/frontend/components/common'
 import { Article } from '@/frontend/@types/Article'
 import Link from 'next/link'
 

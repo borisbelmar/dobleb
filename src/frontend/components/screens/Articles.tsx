@@ -1,6 +1,6 @@
 import { Article } from '@/frontend/@types/Article'
 import Masonry from 'react-masonry-css'
-import ArticleItem from '../common/ArticleItem'
+import { ArticleItem } from '../common'
 import { Container } from '../layouts'
 
 interface Props {
