@@ -1,6 +1,6 @@
 import useDateFnsLocale from '@/frontend/hooks/useDateFnsLocale'
 import getBlurredImage from '@/frontend/utils/getBlurredImage'
-import { format } from 'date-fns'
+import formatArticleDate from '@/frontend/utils/formatArticleDate'
 import Image from 'next/image'
 import { Markdown } from '../common'
 import About from '../common/About/About'
@@ -20,7 +20,7 @@ export default function ArticleContent({
   content
 }: Props) {
   const localeDate = useDateFnsLocale()
-  const dateFormatted = format(new Date(date), 'PP', { locale: localeDate })
+  const dateFormatted = formatArticleDate(date, localeDate)
 
   return (
     <article className="">
