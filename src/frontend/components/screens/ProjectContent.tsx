@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
-import getBlurredImage from '@/frontend/utils/getBlurredImage'
 import ParallaxTilt from 'react-parallax-tilt'
 import { Container } from '../layouts'
 import About from '../common/About/About'
@@ -35,9 +34,7 @@ export default function ProjectContent({
               src={featuredImage}
               alt={title}
               className="object-cover object-top"
-              placeholder="blur"
               fill
-              blurDataURL={getBlurredImage(featuredImage)}
               />
           </ParallaxTilt>
         </div>

@@ -1,4 +1,3 @@
-import getBlurredImage from '@/frontend/utils/getBlurredImage'
 import Image from 'next/image'
 import Link from 'next/link'
 import ParallaxTilt from 'react-parallax-tilt'
@@ -25,9 +24,7 @@ export default function ProjectItem({
             src={featuredImage}
             alt={title}
             className="absolute inset-0 z-0 object-cover object-right sm:object-right"
-            placeholder="blur"
             fill
-            blurDataURL={getBlurredImage(featuredImage)}
           />
           <div className="absolute z-10 inset-0 bg-black bg-opacity-30 md:bg-opacity-60 md:opacity-0 transition-opacity duration-200 group-hover:opacity-100">
             <div className="absolute inset-2 flex flex-col items-start justify-end md:items-center md:justify-center p-4">

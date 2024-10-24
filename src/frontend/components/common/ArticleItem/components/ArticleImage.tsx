@@ -1,4 +1,3 @@
-import getBlurredImage from '@/frontend/utils/getBlurredImage'
 import Image from 'next/image'
 import DateTag from './DateTag'
 
@@ -20,9 +19,7 @@ export default function ArticleImage({
         src={featuredImage}
         alt={title}
         className="absolute inset-0 z-0 object-cover object-right sm:object-right"
-        placeholder="blur"
         fill
-        blurDataURL={getBlurredImage(featuredImage)}
       />
     </div>
   )
